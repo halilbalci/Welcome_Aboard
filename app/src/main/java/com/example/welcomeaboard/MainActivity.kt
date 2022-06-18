@@ -15,7 +15,9 @@ class MainActivity : AppCompatActivity() {
     }
     fun playBarbut(){
         val diceImage: ImageView = findViewById(R.id.imageView2)
+        val diceImage2: ImageView = findViewById(R.id.imageView3)
         val dice =  Dice(6)
         diceImage.setImageResource(dice.dicePics(dice.roll()))
+        diceImage2.setImageResource(dice.dicePics(dice.roll()))
     }
 }
