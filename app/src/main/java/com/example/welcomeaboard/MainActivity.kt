@@ -16,27 +16,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = TipCalculatorBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.calculate.setOnClickListener{calculateTip()}
+        binding.calculate.setOnClickListener{calcuteOnClick()}
 
         //setContentView(R.layout.barbut_playground)
         //val rollButton: Button = findViewById(R.id.button)
         //rollButton.setOnClickListener { playBarbut() }
     }
-    private fun calculateTip(){
-        val costString = binding.textInputTip.text.toString()
-        val costDouble = costString.toDoubleOrNull()
-        if (costDouble == null) {
-            binding.tipResult.text = ""
-            return
-        }
-        val tipPercent = when(binding.radioGroup.checkedRadioButtonId){
+
+    private fun calcuteOnClick(){
+        val tc = TipCalculator()
+        val tip = tc.calculateTip(binding.textInputTip.text.toString(),getTipPercent(),binding.switchCompat.isChecked)
+        binding.tipResult.text = getString(R.string.tip_amount, NumberFormat.getCurrencyInstance().format(tip))
+    }
+
+    private fun getTipPercent(): Double {
+        return when(binding.radioGroup.checkedRadioButtonId){
             R.id.percent20-> 0.20
             R.id.percent18-> 0.18
             else-> 0.15
         }
-        var tip = tipPercent*costDouble
-        if(binding.switchCompat.isChecked) tip = kotlin.math.ceil(tip)
-        binding.tipResult.text = getString(R.string.tip_amount, NumberFormat.getCurrencyInstance().format(tip))
     }
 
     fun playBarbut(){
