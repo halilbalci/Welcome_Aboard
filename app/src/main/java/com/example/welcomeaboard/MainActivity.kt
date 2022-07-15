@@ -44,4 +44,5 @@ class MainActivity : AppCompatActivity() {
         diceImage.setImageResource(dice.dicePics(dice.roll()))
         diceImage2.setImageResource(dice.dicePics(dice.roll()))
     }
+
 }
