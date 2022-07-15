@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun calcuteOnClick(){
         val tc = TipCalculator()
-        val tip = tc.calculateTip(binding.textInputTip.text.toString(),getTipPercent(),binding.switchCompat.isChecked)
+        val tip = tc.calculateTip(binding.costOfServiceEditText.text.toString(),getTipPercent(),binding.switchCompat.isChecked)
         binding.tipResult.text = getString(R.string.tip_amount, NumberFormat.getCurrencyInstance().format(tip))
     }
 
